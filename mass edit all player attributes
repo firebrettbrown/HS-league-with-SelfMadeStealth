@@ -1,0 +1,11 @@
+players = await bbgm.idb.cache.players.getAll();
+for (const p of players) {
+  const ratings = p.ratings[p.ratings.length - 1];
+  
+  ratings.pss *= 1.2;
+ 
+  // Recompute ovr and pot 
+  bbgm.player.develop(p, 0);
+ 
+  await bbgm.idb.cache.players.put(p); 
+ }
